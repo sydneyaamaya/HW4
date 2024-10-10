@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** SYDNEY AMAYA / ))! ***
  *
  * This hashMap object represents an over simplification of Java's implementation of HashMap within
  * Java's Collection Framework Library. You are to complete the following methods:
@@ -231,6 +231,16 @@ class myHashMap<K,V> {
          * return value is returned the invoking function based on the remove outcome.
          */
 
+        /**
+         * 1.Traverse hash map to see if key is in the object using a while loop
+         * 2.If key is found remove it from hash map
+         * 3.adjust hash map size 
+         */
+        //use get to check if key is in the hash map and if it is not return null
+        int value = get(K);
+        if (value = null){
+            return null;
+        }
         return null;
     }
 
