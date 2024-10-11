@@ -1,5 +1,5 @@
 /*
- * *** SYDNEY AMAYA / 001 ***
+ * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -41,7 +41,24 @@ class HashingProblems {
          * returning 0.0/0.0 IS correct (which would return a non-number).
          */
 
-         return 0.0 / 0.0;
+        /**
+         * 1.loop through array and see if each index is a key in the map 
+         *  by using contains key 
+         * 2. if the key is in the map, update sum by getting the value of they key 
+         * and adding it to the current sum
+         * 3. update count by adding one if the key is in the map
+         * 4. find the average by doing sum / count
+         */
+
+        double sum = 0.0;
+        double count = 0.0;
+        for (int i = 0; i < array.length - 1; i++){
+            if(map.containsKey(array[i])){
+                sum = sum + map.get(array[i]);
+                count++;
+            }
+        }
+         return sum / count;
   }
 
 

@@ -232,16 +232,24 @@ class myHashMap<K,V> {
          */
 
         /**
-         * 1.Traverse hash map to see if key is in the object using a while loop
+         * 1.Traverse hash map to see if key is in the hashmap using a while loop
          * 2.If key is found remove it from hash map
          * 3.adjust hash map size 
          */
-        //use get to check if key is in the hash map and if it is not return null
-        int value = get(K);
-        if (value = null){
-            return null;
+        V value = null;
+        int index = getBucketIndex(key);
+        HashNode<K, V> head = bucket.get(index);
+        if(head == null){
+            return value;
         }
-        return null;
+        while (head != null){
+            if (head.key.equals(key)){
+                value = head.value;
+                break;
+            }
+            head = head.next;
+        }
+        return value;
     }
 
 
@@ -312,7 +320,6 @@ class myHashMap<K,V> {
         if (head == null) {
             bucket.set(index, toAdd);
             size++;
-
         } else {
             while (head != null) {
                 if (head.key.equals(key)) {
