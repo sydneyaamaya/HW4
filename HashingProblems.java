@@ -75,17 +75,17 @@ class HashingProblems {
 
     /**
      * 1. create a set using keySet with all the keys from the map
-     * 2. iteratre through the set, and % 2 each key
-     * 3. if key % 2 != 0 add that key to the arraylist since it is odd
+     * 2. iterate through the set, and % 2 each key
+     * 3. if key % 2 != 0 add that key's value to the arraylist since it is odd
      */
 
     Set<Integer> keys = new HashSet<>();
     keys = map.keySet();
-    while(keys.iterator().hasNext()){
-        if(keys.iterator().next() %2 != 0){
-            result.add(keys.iterator().toString());
+    for(Integer key : keys){
+        if(key % 2 != 0){
+            result.add(map.get(key));
         }
-    }  
+    }
     return result;
   }
 
