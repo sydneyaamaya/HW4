@@ -73,14 +73,20 @@ class HashingProblems {
     
       ArrayList<String> result = new ArrayList<>();
 
-      /*
-       * ADD YOUR CODE HERE
-       *
-       * Hint: Consider iterating over the HashMap using the keySet method.
-       */
+    /**
+     * 1. create a set using keySet with all the keys from the map
+     * 2. iteratre through the set, and % 2 each key
+     * 3. if key % 2 != 0 add that key to the arraylist since it is odd
+     */
 
-
-      return result;
+    Set<Integer> keys = new HashSet<>();
+    keys = map.keySet();
+    while(keys.iterator().hasNext()){
+        if(keys.iterator().next() %2 != 0){
+            result.add(keys.iterator().toString());
+        }
+    }  
+    return result;
   }
 
 
