@@ -115,7 +115,7 @@ class HashingProblems {
    *
    * In order to solve this problem in O(n) complexity, utilize a HashMap (or a HashSet).
    *
-   * You are two solve this using a HashMap (or you can use a HashSet, which is implemented
+   * You are to solve this using a HashMap (or you can use a HashSet, which is implemented
    * using HashMap). To solve this, you should populate the HashMap (or HashSet) based on
    * the array (this will be complexity time on the order of 'n'). After populating the HashMap,
    * consider a for-loop that does a lookup (probe) of the HashMap (or HashSet) on each iteration
@@ -129,11 +129,22 @@ class HashingProblems {
 
   public int twoSums(int[] numbers, int k) {
 
-      /*
-       * ADD YOUR CODE HERE
-       */
-
-      return -1;
+    /**
+     * 1. populate hashset with elements from array using a for loop which is complexity 0(n).
+     * 2. use a for loop to probe the hashset
+     * 3. if the value of the bucket - k is present in the set, add 1 to count 
+     *    if (hashset.contains(value + k)) count++
+     */
+    int count = 0;
+    Set<Integer> values = new HashSet<>();
+    for (int num : numbers){
+        values.add(num);
+    }
+    for (Integer value : values){
+        if(values.contains(value + k)){
+            count++;
+        }
+    }
+    return count;
   }
-
 } /* end class HashingProblems */
