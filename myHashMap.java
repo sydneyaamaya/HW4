@@ -1,5 +1,5 @@
 /*
- * *** SYDNEY AMAYA / ))! ***
+ * *** SYDNEY AMAYA / Section 001 ***
  *
  * This hashMap object represents an over simplification of Java's implementation of HashMap within
  * Java's Collection Framework Library. You are to complete the following methods:
@@ -230,25 +230,11 @@ class myHashMap<K,V> {
          * the return value discussion in this method's prologue to make sure the correct
          * return value is returned the invoking function based on the remove outcome.
          */
-
-        /**
-         * 1.Traverse hash map to see if key is in the hashmap using a while loop
-         * 2.If key is found remove it from hash map
-         * 3.adjust hash map size 
-         */
+        
         V value = null;
-        int index = getBucketIndex(key);
-        HashNode<K, V> head = bucket.get(index);
-        if(head == null){
-            return value;
-        }
-        while (head != null){
-            if (head.key.equals(key)){
-                value = head.value;
-                break;
-            }
-            head = head.next;
-        }
+        Set<K> keys = new HashSet<>();
+        keys = this.keySet();
+        
         return value;
     }
 
@@ -415,14 +401,15 @@ class myHashMap<K,V> {
      */
 
     public V replace(K key, V val) {
-
         /*
-         * ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME AT TOP OF FILE
-         *
-         * Make sure you return the proper value based on the outcome of this method's
-         * replace (see method's prologue above).
+         * 1. see if the map contains the key
+         * 2. if the key is found, get the old value and store it in a variable
+         *  and then set the value to be the new value
+         * 3. return the old value and key
+         * 4. if the key was never found return value as null
          */
-
+        
+        
         return val;
     }
 
