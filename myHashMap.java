@@ -439,15 +439,34 @@ class myHashMap<K,V> {
 
     public V replace(K key, V val) {
         /*
-         * 1. see if the map contains the key
-         * 2. if the key is found, get the old value and store it in a variable
-         *  and then set the value to be the new value
-         * 3. return the old value and key
-         * 4. if the key was never found return value as null
+         * See if the key is in the map using contains
+         * If they key is in the map find the bucket it is hashed to
+         * Traverse the list at the bucket is there is one
+         * When they key is found, store the old value in a variable and set
+         *   the value to the new value
          */
-        
-        
-        return val;
+        V oldValue = null;
+        V keyInMap = get(key);
+        if (keyInMap == null){
+            return keyInMap;
+        }
+        //if the key is in the map get the bucket where the key is hashed to
+        int index = getBucketIndex(key);
+        //create a head node by getting the first node at index
+        HashNode<K, V> head = bucket.get(index); 
+        HashNode<K, V> toAdd = new HashNode<>();
+        toAdd.key = key;
+        toAdd.value = val;
+        while (head != null){
+            //check if current node's key is equal to param key and if it is 
+            //store current value and set new value to param val
+            if (head.key.equals(key)){
+                oldValue = head.value;
+                bucket.set(index, toAdd);
+            }
+            head = head.next;
+        }
+        return oldValue;
     }
 
     
@@ -475,7 +494,35 @@ class myHashMap<K,V> {
          * value 'oldval', and is so, it SHOULD call replace(K, V) for code reuse.
          */
 
-        return false;
+        /*
+         * Check that key and old value exists as a pair, if not return false
+         * If it exists, call replace(key, newVal) and return true
+         */
+        boolean replaced = false;
+        boolean isPair = false;
+        //check if key is in map
+        V keyInMap = get(key);
+        if (keyInMap == null){
+            return replaced;
+        }
+        //check if key has param old value as a value
+        int index = getBucketIndex(key);
+        HashNode<K, V> head = bucket.get(index); 
+        //traverse linked list to see if bucket contains value, if it does then 
+        //the key and old val are a pair 
+        while( head != null){
+            if(head.value.equals(oldVal)){
+                isPair = true;
+                break;
+            }
+            head = head.next;
+        }
+        //if key has oldVal as a value call replace and set replaced as true
+        if (isPair == true){
+            replace(key, newVal);
+            replaced = true;
+        }
+        return replaced;
     }
 
 
