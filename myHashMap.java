@@ -230,11 +230,48 @@ class myHashMap<K,V> {
          * the return value discussion in this method's prologue to make sure the correct
          * return value is returned the invoking function based on the remove outcome.
          */
-        
+        /*
+         * Find the bucket key is hashed to
+         * See if the bucket has a chain list
+         * If there is a chain list, traverse the chain 
+         * If the key is found, return the value and set the previous node's next to next next 
+         * If the key is found, adjust hashmap size
+         */
+        //create value to return 
         V value = null;
-        Set<K> keys = new HashSet<>();
-        keys = this.keySet();
-        
+        // check if the key is in the map and if it not return null
+        V keyInMap = get(key);
+        if (keyInMap == null){
+            return keyInMap;
+        }
+        //if the key is in the map get the bucket where the key is hashed to
+        int index = getBucketIndex(key);
+        //create a head node by getting the first node at index
+        HashNode<K, V> head = bucket.get(index); 
+        //create a node to keep track of all the previous nodes
+        HashNode<K, V> previous = null;
+        while (head != null){
+            //if the key is found store the value to return 
+            if (head.key.equals(key)){
+                value = head.value;
+            //if the key was the head node set first of the bucket to be head.next
+            if (previous == null){
+                bucket.set(index, head.next);
+            }
+            //if the key was not the head then set previous.next to head.next to delete head
+            else {
+                previous.next = head.next;
+            }
+            //reduce size of map if key is found
+            size--;
+            return value;
+        }
+        //continue while loop by setting previous as the node (head) just probed and setting the next
+        //key to check as the node after head
+        previous = head;
+        head = head.next;
+    }
+    //will return null 
         return value;
     }
 
